@@ -1,6 +1,11 @@
 # Coco
 Coco is an http web framework for golang.
 
+# Install
+``` shell
+go get -u github.com/olivetree123/coco
+```
+
 # Tutorial
 ``` javascript
 import (
