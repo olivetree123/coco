@@ -1,6 +1,7 @@
 package coco
 
 import (
+	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"net/http"
 )
@@ -38,6 +39,7 @@ func (c *Coco) AddRouter(method string, path string, h Handler) {
 	c.httpRouter.Handler(method, path, h)
 }
 
-func (c *Coco) Run() error {
-	return http.ListenAndServe(":8000", c)
+func (c *Coco) Run(host string, port int) error {
+	addr := fmt.Sprintf("%s:%d", host, port)
+	return http.ListenAndServe(addr, c)
 }
