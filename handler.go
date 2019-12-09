@@ -6,6 +6,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 	"mime"
 	"net/http"
+	"strconv"
 	"strings"
 )
 
@@ -27,6 +28,7 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		response = resp.BinaryData
 		w.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s", resp.FileName))
 		w.Header().Set("Content-Type", MimeTypeByName(resp.FileName))
+		w.Header().Set("Content-Length", strconv.Itoa(len(response)))
 	} else {
 		response, err = json.Marshal(resp)
 		if err != nil {
