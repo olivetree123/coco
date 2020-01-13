@@ -8,17 +8,17 @@ import (
 
 // Coco Framework
 type Coco struct {
-	httpRouter              *httprouter.Router
-	Request                 *http.Request
-	ResponseWriter          http.ResponseWriter
-	Params                  httprouter.Params
-	AdditionResponseHeaders map[string]string
+	httpRouter     *httprouter.Router
+	Request        *http.Request
+	ResponseWriter http.ResponseWriter
+	Params         httprouter.Params
+	Header         map[string]string
 }
 
 func NewCoco() *Coco {
 	c := Coco{
-		httpRouter:              httprouter.New(),
-		AdditionResponseHeaders: make(map[string]string),
+		httpRouter: httprouter.New(),
+		Header:     make(map[string]string),
 	}
 	return &c
 }
@@ -30,7 +30,7 @@ func (c *Coco) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	//c.ResponseWriter = w
 	//handler := c.Router.data[r.RequestURI]
 	//handler(c)
-	for key, val := range c.AdditionResponseHeaders {
+	for key, val := range c.Header {
 		w.Header().Set(key, val)
 	}
 	c.httpRouter.ServeHTTP(w, r)
