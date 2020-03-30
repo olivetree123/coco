@@ -23,3 +23,14 @@ func main() {
     c.Run()
 }
 ``` 
+
+# Params
+``` javascript
+// GET
+name := c.Params.ByName("name")
+
+// POST JSON
+var param DBCreateParam
+decoder := json.NewDecoder(c.Request.Body)
+err := decoder.Decode(&param)
+```
