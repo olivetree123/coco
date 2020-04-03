@@ -26,7 +26,11 @@ func main() {
 
 # Params
 ``` javascript
-// GET
+// GET, /api?name=123
+params := c.Request.URL.Query()
+params.Get("name")
+
+// GET, param in url, /api/:name
 name := c.Params.ByName("name")
 
 // POST JSON
